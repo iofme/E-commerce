@@ -32,19 +32,21 @@
     </figure>
 </div>
 
-<section>
+<section class="flex flex-col gap-12 items-center mt-12">
     <h3><strong>NEW ARRIVALS</strong></h3>
 
+        <app-novos-produtos class="w-[100%] flex justify-around"></app-novos-produtos>
 
-    <!--Cards recentes-->
     <button>View All</button>
 </section>
 
+<hr class="mt-12">
 
-<section>
+<section class="flex flex-col gap-12 items-center mt-12">
     <h3><strong>TOP SELLING</strong></h3>
 
-    <!--Cards Mais vendidos-->
+    <app-mais-avaliados class="w-[100%] flex justify-around"></app-mais-avaliados>
+
     <button>View All</button>
 </section>
 
@@ -52,7 +54,7 @@
     <h3><strong>BROWSE BY DRESS STYLE</strong></h3>
 
     <div>
-        <p><strong>Casual</strong></p>
+        <p routerLink="casual"><strong>Casual</strong></p>
         <img src="" alt="">
     </div>
     <div>

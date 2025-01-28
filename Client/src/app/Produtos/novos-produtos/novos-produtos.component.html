@@ -1,0 +1,9 @@
+@for (produtos of produtos; track produtos.id) {
+
+    <div class="w-[295px] h-[408px] flex flex-col gap-1" routerLink="/produto/{{produtos.id}}">
+        <img class="w-[295px] h-[298px]" src="" alt="">
+        <p class="text-[20px] font-bold">{{produtos.nameProduct}}</p>
+        <p class="text[14px]">{{produtos.star}}/5</p>
+        <p class="text-[24px] font-bold">${{produtos.price}}</p>
+    </div>
+}

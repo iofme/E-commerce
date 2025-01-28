@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extension
@@ -14,9 +15,11 @@ namespace API.Extension
             services.AddControllers();
             services.AddDbContext<DataContext>(opt =>
             {
-                opt.UseSqlite(config.GetConnectionString(""));
+                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }

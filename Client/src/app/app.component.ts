@@ -3,6 +3,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
+import { Produto } from './models/produto';
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +13,6 @@ import { FooterComponent } from "./footer/footer.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-  http = inject(HttpClient);
-  produtos: any;
+export class AppComponent {
 
-  ngOnInit(): void {
-    this.http.get('http://localhost:5192/api/user').subscribe({
-      next: response => this.produtos = response,
-      error: error => console.log(error)
-    })
-  }
 }

@@ -6,8 +6,7 @@ using API.Entities;
 using API.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data
-{
+namespace API.Data;
     public class ProductRepository(DataContext context) : IProductRepository
     {
         public async Task<Product?> GetProductByIdAsync(int id)
@@ -20,7 +19,17 @@ namespace API.Data
             return await context.Products.ToListAsync();
         }
 
-        public async Task<bool> SaveAllAsync()
+    public async Task<IEnumerable<Product?>> GetProductsAsyncByTime()
+    {
+        return context.Products.OrderByDescending(d => d.Created);
+    }
+
+    public async Task<IEnumerable<Product?>> GetProductsByStar()
+    {
+        return context.Products.OrderByDescending(s => s.Star);
+    }
+
+    public async Task<bool> SaveAllAsync()
         {
             return await context.SaveChangesAsync() > 0;
         }

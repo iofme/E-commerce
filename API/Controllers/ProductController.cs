@@ -1,15 +1,19 @@
+using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Interface;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class ProductController(DataContext context) : Controller
+    public class ProductController(DataContext context, IProductRepository repository, IMapper mapper) : Controller
     {
         [HttpPost("register")]
         public async Task<ActionResult<Product>> RegisterProduct(RegisterProductDto registerProductDto)
@@ -22,12 +26,56 @@ namespace API.Controllers
                 Description = registerProductDto.Description,
                 Colors = registerProductDto.Colors,
                 Size = registerProductDto.Size,
-                Quantidade = registerProductDto.Quantidade
+                Quantidade = registerProductDto.Quantidade,
+                Style = registerProductDto.Style,
+                Type = registerProductDto.Type,
             };
             context.Products.Add(product);
             await context.SaveChangesAsync();
 
             return product;
+        }
+
+        
+
+        [HttpGet]
+        public async Task<IEnumerable<ProductDto?>> GetProdutuc()
+        {
+            var produtos = await repository.GetProductsAsync();
+
+            var productToReturn = mapper.Map<IEnumerable<ProductDto>>(produtos);
+
+            return productToReturn;
+        }
+
+        [HttpGet("time")]
+        public async Task<IEnumerable<ProductDto?>> GetProdutucByTime()
+        {
+            var produtoTime = await repository.GetProductsAsyncByTime();
+
+            var productToReturn = mapper.Map<IEnumerable<ProductDto>>(produtoTime);
+
+            return productToReturn;
+        }
+        [HttpGet("star")]
+        public async Task<IEnumerable<ProductDto?>> GetProdutucByStar()
+        {
+            var produtoStar = await repository.GetProductsByStar();
+
+            var productToReturn = mapper.Map<IEnumerable<ProductDto>>(produtoStar);
+
+            return productToReturn;
+        }
+
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ProductDto>> GetProdutucById(int id)
+        {
+            var produtos = await repository.GetProductByIdAsync(id);
+
+            if(produtos == null) return NotFound("Falha ao achar o usuário pelo Id");
+
+            return mapper.Map<ProductDto>(produtos);
         }
     }
 }

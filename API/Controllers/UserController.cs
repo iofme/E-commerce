@@ -14,17 +14,5 @@ using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
-    [Route("/api/[controller]")]
-    public class UserController(DataContext context) : Controller
-    {
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProdutuc()
-        {
-            var produtos = await context.Products.ToListAsync();
 
-            return produtos;
-        }
-
-        
-    }
 }
