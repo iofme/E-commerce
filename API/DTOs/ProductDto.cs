@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Entities;
 
 namespace API.DTOs
 {
@@ -9,7 +10,7 @@ namespace API.DTOs
     {
         public int Id { get; set; }
         public required string NameProduct { get; set; }
-        public double Star { get; set; }
+         public List<FeedBackUser> FeedBack { get; set; } = [];
         public double Price { get; set; }
         public required string Description { get; set; }
         public required string Type { get; set; }

@@ -21,7 +21,6 @@ namespace API.Controllers
             var product = new Product
             {
                 NameProduct = registerProductDto.NameProduct,
-                Star = registerProductDto.Star,
                 Price = registerProductDto.Price,
                 Description = registerProductDto.Description,
                 Colors = registerProductDto.Colors,
@@ -35,8 +34,6 @@ namespace API.Controllers
 
             return product;
         }
-
-        
 
         [HttpGet]
         public async Task<IEnumerable<ProductDto?>> GetProdutuc()
@@ -57,6 +54,7 @@ namespace API.Controllers
 
             return productToReturn;
         }
+
         [HttpGet("star")]
         public async Task<IEnumerable<ProductDto?>> GetProdutucByStar()
         {
@@ -73,9 +71,26 @@ namespace API.Controllers
         {
             var produtos = await repository.GetProductByIdAsync(id);
 
-            if(produtos == null) return NotFound("Falha ao achar o usuário pelo Id");
+            if (produtos == null) return NotFound("Falha ao achar o usuário pelo Id");
 
             return mapper.Map<ProductDto>(produtos);
         }
+
+        [HttpPost("addFeedback/{id:int}")]
+        public async Task<ActionResult<Product>> AddFeedBack(int id, RegisterProductDto register)
+        {
+            var feedback = register.FeedBack;
+
+            var product = await repository.GetProductByIdAsync(id);
+
+            if (product == null) return NotFound("Não foi possivel achar o produto");
+
+            var addfeadback = product.FeedBack = feedback;
+            
+            if (addfeadback == null) return BadRequest("Não foi possivel enviar o feedback");
+
+            return Ok(addfeadback);
+        }
+
     }
 }

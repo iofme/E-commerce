@@ -9,9 +9,4 @@ export const routes: Routes = [
     {path:'produto/:id', component:ProdutoEspecificoComponent },
     {path:'produtos-novos', component:NovosProdutosComponent },
     {path:'produtos-avaliados', component:MaisAvaliadosComponent },
-    {path:'produtos-casual',},
-    {path:'produtos-formal',},
-    {path:'produto-party',},
-    {path:'produto-gym',},
-    {path:'carrinho',},
 ];

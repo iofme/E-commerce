@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Produto } from '../models/produto';
-import { ProductService } from '../product.service';
+import { Produto } from '../../models/produto';
+import { ProductService } from '../../product.service';
 
 @Component({
   selector: 'app-mais-avaliados',

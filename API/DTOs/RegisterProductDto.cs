@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Entities;
 
 namespace API.DTOs
 {
@@ -11,9 +12,10 @@ namespace API.DTOs
         [Required]
         public required string NameProduct { get; set; }
         [Required]
-        public double Star { get; set; }
-        [Required]
         public double Price { get; set; }
+
+        public List<FeedBackUser> FeedBack { get; set; } = [];
+
         [Required]
         public required string Description { get; set; }
         [Required]

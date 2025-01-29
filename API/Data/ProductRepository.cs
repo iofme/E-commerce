@@ -24,9 +24,9 @@ namespace API.Data;
         return context.Products.OrderByDescending(d => d.Created);
     }
 
-    public async Task<IEnumerable<Product?>> GetProductsByStar()
+    public Task<IEnumerable<Product?>> GetProductsByStar()
     {
-        return context.Products.OrderByDescending(s => s.Star);
+        throw new NotImplementedException();
     }
 
     public async Task<bool> SaveAllAsync()

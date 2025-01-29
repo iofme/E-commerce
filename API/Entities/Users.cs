@@ -8,7 +8,10 @@ namespace API.Entities
 {
     public class Users : IdentityUser<int>
     {
-        public Product Product { get; set; }
+        public List<Product> Product { get; set; } = [];
+        public double SendStar { get; set; }
+        public string? Role { get; set; }
+        public string? SendFeedback { get; set; }
         public ICollection<UserRole> UserRoles { get; set; } = [];
     }
 }

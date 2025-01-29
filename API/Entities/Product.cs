@@ -9,7 +9,7 @@ namespace API.Entities
     {
         public int Id { get; set; }
         public required string NameProduct { get; set; }
-        public double Star { get; set; }
+        public List<FeedBackUser> FeedBack { get; set; } = [];
         public double Price { get; set; }
         public required string Description { get; set; }
         public required string Type { get; set; }

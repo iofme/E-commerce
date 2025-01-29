@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Interface;
+using API.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extension
@@ -18,6 +19,7 @@ namespace API.Extension
                 opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
+            services.AddScoped<ITokenService, TokenServices>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

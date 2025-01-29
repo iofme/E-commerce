@@ -13,6 +13,8 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<Product, ProductDto>();
+            CreateMap<Users, UserDto>();
+            CreateMap<RegisterUser, Users>();
             CreateMap<string, DateOnly>().ConvertUsing(s => DateOnly.Parse(s));
             CreateMap<DateTime, DateTime>().ConvertUsing(d => DateTime.SpecifyKind(d, DateTimeKind.Utc));
             CreateMap<DateTime?, DateTime?>().ConvertUsing(d => d.HasValue ? DateTime.SpecifyKind(d.Value, DateTimeKind.Utc) : null);

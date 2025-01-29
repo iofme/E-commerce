@@ -14,6 +14,7 @@ namespace API.Data
         IdentityUserToken<int>>(options)
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<FeedBackUser> FeedBackUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
