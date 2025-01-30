@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
@@ -77,20 +78,17 @@ namespace API.Controllers
         }
 
         [HttpPost("addFeedback/{id:int}")]
-        public async Task<ActionResult<Product>> AddFeedBack(int id, RegisterProductDto register)
+        public async Task<ActionResult> AddFeedBack(int id, ProductUpdate update)
         {
-            var feedback = register.FeedBack;
-
             var product = await repository.GetProductByIdAsync(id);
 
-            if (product == null) return NotFound("Não foi possivel achar o produto");
+            if(product == null) return BadRequest("Não foi possivel achar o produto");
 
-            var addfeadback = product.FeedBack = feedback;
+            context.Products.Add(product);
+
+            if(await repository.SaveAllAsync()) return NoContent();
             
-            if (addfeadback == null) return BadRequest("Não foi possivel enviar o feedback");
-
-            return Ok(addfeadback);
+            return BadRequest("Falha ao dar feedback");
         }
-
     }
 }
