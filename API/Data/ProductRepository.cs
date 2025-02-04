@@ -3,17 +3,17 @@ using API.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data;
-    public class ProductRepository(DataContext context) : IProductRepository
+public class ProductRepository(DataContext context) : IProductRepository
+{
+    public async Task<Product?> GetProductByIdAsync(int id)
     {
-        public async Task<Product?> GetProductByIdAsync(int id)
-        {
-            return await context.Products.FindAsync(id);
-        }
+        return await context.Products.FindAsync(id);
+    }
 
-        public async Task<IEnumerable<Product?>> GetProductsAsync()
-        {
-            return await context.Products.Include(f => f.FeedBack).ToListAsync();
-        }
+    public async Task<IEnumerable<Product?>> GetProductsAsync()
+    {
+        return await context.Products.Include(f => f.FeedBack).ToListAsync();
+    }
 
     public async Task<IEnumerable<Product?>> GetProductsAsyncByTime()
     {
@@ -25,12 +25,12 @@ namespace API.Data;
         return await context.Products.ToListAsync();
     }
     public async Task<bool> SaveAllAsync()
-        {
-            return await context.SaveChangesAsync() > 0;
-        }
-   public void UpdateProduct(Product product)
-        {
-             context.Entry(product).State = EntityState.Modified;
-        }
-        
+    {
+        return await context.SaveChangesAsync() > 0;
     }
+    public void UpdateProduct(Product product)
+    {
+        context.Entry(product).State = EntityState.Modified;
+    }
+
+}

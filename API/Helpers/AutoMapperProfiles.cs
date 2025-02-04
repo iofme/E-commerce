@@ -14,6 +14,7 @@ namespace API.Helpers
         {
             CreateMap<ProductUpdate, Product>();
             CreateMap<Product, ProductDto>();
+            CreateMap<Users, MemberDto>();
             CreateMap<Users, UserDto>();
             CreateMap<RegisterUser, Users>();
             CreateMap<string, DateOnly>().ConvertUsing(s => DateOnly.Parse(s));

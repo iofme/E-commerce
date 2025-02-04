@@ -1,20 +1,17 @@
-using System.Security.Claims;
-using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Extension;
 using API.Interface;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class ProductController(DataContext context, IProductRepository repository, IMapper mapper) : Controller
+    public class ProductController(DataContext context, IUserRepository userRepository , IProductRepository repository, IMapper mapper) : Controller
     {
         [HttpPost("register")]
         public async Task<ActionResult<Product>> RegisterProduct(RegisterProductDto registerProductDto)
@@ -77,8 +74,8 @@ namespace API.Controllers
             return mapper.Map<ProductDto>(produtos);
         }
 
-
-        [HttpPost("addFeedback/{id}")]
+        [Authorize]
+        [HttpPost("addFeedback/{id:int}")]
         public async Task<ActionResult> AddFeedBack(int id, FeedBackUserDto feedBackUserDto)
         {
             var product = await repository.GetProductByIdAsync(id);
@@ -90,7 +87,7 @@ namespace API.Controllers
                 Star = feedBackUserDto.Star,
                 FeedBack = feedBackUserDto.FeedBack
             };
-            
+
             product.FeedBack.Add(feedback);
 
             repository.UpdateProduct(product);
@@ -101,5 +98,23 @@ namespace API.Controllers
         }
 
 
+        [Authorize]
+        [HttpPost("carrinho/{productId:int}")]
+        public async Task<ActionResult> AdicionarCarrinho(int productId)
+        {
+            var product = await repository.GetProductByIdAsync(productId);
+
+            if (product == null) BadRequest("Não foi possivel achar o produto");
+
+            var user = await userRepository.GetUserById(User.GetUserId());
+
+            user!.Product.Add(product!);
+
+            userRepository.UpdateUser(user);
+
+            await userRepository.SaveAllAsync();
+
+            return NoContent();
+        }
     }
 }

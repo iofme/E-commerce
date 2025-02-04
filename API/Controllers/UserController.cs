@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interface;
@@ -11,7 +12,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class UsersController(UserManager<Users> userManager, ITokenService tokenService, IMapper mapper) : Controller
+    public class UsersController(UserManager<Users> userManager, IUserRepository userRepository, ITokenService tokenService, IMapper mapper) : Controller
     {
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterUser register)
@@ -30,7 +31,6 @@ namespace API.Controllers
             {
                 Username = user.UserName,
                 Token = await tokenService.CreateToken(user),
-                Role = user.Role!
             };
         }
 
@@ -49,8 +49,19 @@ namespace API.Controllers
             {
                 Username = user.UserName,
                 Token = await tokenService.CreateToken(user),
-                Role = user.Role!
             };
         }
+
+        [HttpGet]
+        public async Task<IEnumerable<MemberDto>> GetUsers()
+        {
+            var users = await userRepository.GetUsers();
+
+            var returnUsers = mapper.Map<IEnumerable<MemberDto>>(users);
+
+            return returnUsers;
+        }
+
+
     }
 }
