@@ -9,7 +9,6 @@
         </figure>
         <div>
             <h1 class="text-[40px] font-bold">{{produto.nameProduct}}</h1>
-            <p class="text-[16px]">{{produto.star}}</p>
             <p class="text-[32px] font-bold">${{produto.price}}</p>
             <p class="text-[16px]">{{produto.description}}</p>
             <hr>
@@ -46,7 +45,7 @@
             <p>FAQs</p>
         </div>
 
-        <app-avaliacao-produto [produto]="produto"></app-avaliacao-produto>
+        <app-avaliacao-produto></app-avaliacao-produto>
 
         <button>Load More Reviews</button>
     </div>

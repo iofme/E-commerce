@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NovosProdutosComponent } from '../novos-produtos/novos-produtos.component';
 import { ProductService } from '../../_services/product.service';
 import { AvaliacaoProdutoComponent } from "../avaliacao-produto/avaliacao-produto.component";
+import { FeedBack } from '../../models/feedback';
 
 @Component({
   selector: 'app-produto-especifico',
@@ -23,22 +24,22 @@ export class ProdutoEspecificoComponent implements OnInit {
 
   loadProduto() {
     const id = this.route.snapshot.paramMap.get('id')
- 
+
     if (!id || id == null) {
       console.log("não foi possivel achar o usuário")
       return;
     }
-      this.produtoService.getProduct(parseInt(id)).subscribe({
-        next: respone => this.produto = respone,
-        error: error => console.log(error)
-      })
+    this.produtoService.getProduct(parseInt(id)).subscribe({
+      next: respone => this.produto = respone,
+      error: error => console.log(error)
+    })
   }
 
-  addProduct(){
+  addProduct() {
     this.number++
   }
-  removeProduct(){
-    if(this.number > 1){
+  removeProduct() {
+    if (this.number > 1) {
       this.number--
     }
   }

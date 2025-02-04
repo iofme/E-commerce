@@ -1,3 +1,6 @@
-<div>
-    <p>{{produto().feedBack}}</p>
-</div>
+@for (feedBack of feedBack; track feedBack.id) {
+    <div>
+        <p>{{feedBack.star}}</p>
+        <p>{{feedBack.feedBack}}</p>
+    </div>
+}
