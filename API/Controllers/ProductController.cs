@@ -11,7 +11,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class ProductController(DataContext context, IUserRepository userRepository , IProductRepository repository, IMapper mapper) : Controller
+    public class ProductController(DataContext context, IUserRepository userRepository, IProductRepository repository, IMapper mapper) : Controller
     {
         [HttpPost("register")]
         public async Task<ActionResult<Product>> RegisterProduct(RegisterProductDto registerProductDto)
@@ -41,6 +41,16 @@ namespace API.Controllers
             var productToReturn = mapper.Map<IEnumerable<ProductDto>>(produtos);
 
             return productToReturn;
+        }
+
+        [HttpGet("feedback/{id:int}")]
+        public async Task<IEnumerable<FeedBackUser>> GetProdutucWithFeedBack(int id)
+        {
+            var produto = await repository.GetFeedBackAsync(id);
+
+            if (produto == null) NotFound("Não foi possivel achar o produto pelo id");
+
+            return produto!;
         }
 
         [HttpGet("time")]

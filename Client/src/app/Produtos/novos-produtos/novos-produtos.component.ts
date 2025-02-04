@@ -1,8 +1,8 @@
 
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ProductService } from '../../product.service';
 import { Produto } from '../../models/produto';
+import { ProductService } from '../../_services/product.service';
 
 @Component({
   selector: 'app-novos-produtos',

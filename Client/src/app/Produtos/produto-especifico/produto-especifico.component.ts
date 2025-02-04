@@ -1,12 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Produto } from '../../models/produto';
-import { ProductService } from '../../product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NovosProdutosComponent } from '../novos-produtos/novos-produtos.component';
+import { ProductService } from '../../_services/product.service';
+import { AvaliacaoProdutoComponent } from "../avaliacao-produto/avaliacao-produto.component";
 
 @Component({
   selector: 'app-produto-especifico',
-  imports: [NovosProdutosComponent],
+  imports: [NovosProdutosComponent, AvaliacaoProdutoComponent],
   templateUrl: './produto-especifico.component.html',
   styleUrl: './produto-especifico.component.css'
 })

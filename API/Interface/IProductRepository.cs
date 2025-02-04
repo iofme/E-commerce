@@ -12,6 +12,7 @@ namespace API.Interface
         void UpdateProduct(Product product);
         Task<bool> SaveAllAsync();
         Task<IEnumerable<Product?>> GetProductsAsync();
+        Task<IEnumerable<FeedBackUser>> GetFeedBackAsync(int id);
         Task<Product?> GetProductByIdAsync(int id);
         Task<IEnumerable<Product?>> GetProductsAsyncByTime();
         Task<IEnumerable<Product?>> GetProductsByStar();
