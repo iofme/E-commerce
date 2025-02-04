@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.DTOs
 {
-    public class ProductUpdate
+    public class FeedBackUserDto
     {
         public int Star { get; set; }
         public string? FeedBack { get; set; }

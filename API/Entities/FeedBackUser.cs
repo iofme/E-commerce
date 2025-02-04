@@ -1,11 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-
-namespace API.Entities
+public class FeedBackUser
 {
-    public class FeedBackUser
-    {
-        public int Id { get; set; }
-        public int Star { get; set; }
-        public string? FeedBack { get; set; }
-    }
+    public int Id { get; set; }
+    public int Star { get; set; }
+    public string? FeedBack { get; set; }
 }

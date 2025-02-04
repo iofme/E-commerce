@@ -77,18 +77,29 @@ namespace API.Controllers
             return mapper.Map<ProductDto>(produtos);
         }
 
-        [HttpPost("addFeedback/{id:int}")]
-        public async Task<ActionResult> AddFeedBack(int id, ProductUpdate update)
+
+        [HttpPost("addFeedback/{id}")]
+        public async Task<ActionResult> AddFeedBack(int id, FeedBackUserDto feedBackUserDto)
         {
             var product = await repository.GetProductByIdAsync(id);
 
-            if(product == null) return BadRequest("Não foi possivel achar o produto");
+            if (product == null) return BadRequest("Produto não encontrado");
 
-            context.Products.Add(product);
-
-            if(await repository.SaveAllAsync()) return NoContent();
+            var feedback = new FeedBackUser
+            {
+                Star = feedBackUserDto.Star,
+                FeedBack = feedBackUserDto.FeedBack
+            };
             
-            return BadRequest("Falha ao dar feedback");
+            product.FeedBack.Add(feedback);
+
+            repository.UpdateProduct(product);
+
+            await repository.SaveAllAsync();
+
+            return NoContent();
         }
+
+
     }
 }

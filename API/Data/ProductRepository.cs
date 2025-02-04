@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Entities;
 using API.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -16,26 +12,25 @@ namespace API.Data;
 
         public async Task<IEnumerable<Product?>> GetProductsAsync()
         {
-            return await context.Products.ToListAsync();
+            return await context.Products.Include(f => f.FeedBack).ToListAsync();
         }
 
     public async Task<IEnumerable<Product?>> GetProductsAsyncByTime()
     {
-        return context.Products.OrderByDescending(d => d.Created);
+        return await context.Products.OrderByDescending(d => d.Created).ToListAsync();
     }
 
-    public Task<IEnumerable<Product?>> GetProductsByStar()
+    public async Task<IEnumerable<Product?>> GetProductsByStar()
     {
-        throw new NotImplementedException();
+        return await context.Products.ToListAsync();
     }
-
     public async Task<bool> SaveAllAsync()
         {
             return await context.SaveChangesAsync() > 0;
         }
-
-        public void UpdateProduct(Product product)
+   public void UpdateProduct(Product product)
         {
-            context.Entry(product).State = EntityState.Modified;
+             context.Entry(product).State = EntityState.Modified;
         }
+        
     }

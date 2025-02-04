@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250128103730_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250204104022_InitialMigrations")]
+    partial class InitialMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,10 +51,20 @@ namespace API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Star")
-                        .HasColumnType("REAL");
+                    b.Property<string>("Style")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UsersId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Products");
                 });
@@ -144,11 +154,17 @@ namespace API.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("SendFeedback")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("SendStar")
+                        .HasColumnType("REAL");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
@@ -166,9 +182,29 @@ namespace API.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("FeedBackUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FeedBack")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Star")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("ProductId");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("FeedBackUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -255,6 +291,13 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("API.Entities.Product", b =>
+                {
+                    b.HasOne("API.Entities.Users", null)
+                        .WithMany("Product")
+                        .HasForeignKey("UsersId");
+                });
+
             modelBuilder.Entity("API.Entities.UserRole", b =>
                 {
                     b.HasOne("API.Entities.Role", "Role")
@@ -274,15 +317,11 @@ namespace API.Data.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("API.Entities.Users", b =>
+            modelBuilder.Entity("FeedBackUser", b =>
                 {
-                    b.HasOne("API.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
+                    b.HasOne("API.Entities.Product", null)
+                        .WithMany("FeedBack")
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -321,6 +360,11 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("API.Entities.Product", b =>
+                {
+                    b.Navigation("FeedBack");
+                });
+
             modelBuilder.Entity("API.Entities.Role", b =>
                 {
                     b.Navigation("UserRoles");
@@ -328,6 +372,8 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Users", b =>
                 {
+                    b.Navigation("Product");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
