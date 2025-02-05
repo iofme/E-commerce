@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Produto } from '../../models/produto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NovosProdutosComponent } from '../novos-produtos/novos-produtos.component';
 import { ProductService } from '../../_services/product.service';
 import { AvaliacaoProdutoComponent } from "../avaliacao-produto/avaliacao-produto.component";
@@ -8,7 +8,7 @@ import { FeedBack } from '../../models/feedback';
 
 @Component({
   selector: 'app-produto-especifico',
-  imports: [NovosProdutosComponent, AvaliacaoProdutoComponent],
+  imports: [NovosProdutosComponent,RouterLink ,AvaliacaoProdutoComponent],
   templateUrl: './produto-especifico.component.html',
   styleUrl: './produto-especifico.component.css'
 })
@@ -30,7 +30,9 @@ export class ProdutoEspecificoComponent implements OnInit {
       return;
     }
     this.produtoService.getProduct(parseInt(id)).subscribe({
-      next: respone => this.produto = respone,
+      next: respone => {
+        this.produto = respone
+      },
       error: error => console.log(error)
     })
   }

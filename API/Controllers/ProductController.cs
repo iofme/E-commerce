@@ -90,12 +90,15 @@ namespace API.Controllers
         {
             var product = await repository.GetProductByIdAsync(id);
 
+            var user = await userRepository.GetUserById(User.GetUserId());
+
             if (product == null) return BadRequest("Produto não encontrado");
 
             var feedback = new FeedBackUser
             {
                 Star = feedBackUserDto.Star,
-                FeedBack = feedBackUserDto.FeedBack
+                FeedBack = feedBackUserDto.FeedBack,
+                UserName = user.UserName
             };
 
             product.FeedBack.Add(feedback);

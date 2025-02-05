@@ -1,0 +1,39 @@
+.casual{
+    width: 407px;
+    height: 289px;
+    border-radius: 20px;
+    display: flex;
+    align-items: start;
+    background-image: url(/casual.jpg);
+    padding: 15px;
+}
+
+.formal{
+    width: 684px;
+    height: 289px;
+    border-radius: 20px;
+    display: flex;
+    align-items: start;
+    background-image: url(/formal.jpg);
+    padding: 15px;
+}
+
+.party{
+    width: 684px;
+    height: 289px;
+    border-radius: 20px;
+    display: flex;
+    align-items: start;
+    background-image: url(/party.jpg);
+    padding: 15px;
+}
+
+.gym{
+    width: 407px;
+    height: 289px;
+    border-radius: 20px;
+    display: flex;
+    align-items: start;
+    background-image: url(/gym.jpg);
+    padding: 15px;
+}

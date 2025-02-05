@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250204104022_InitialMigrations")]
-    partial class InitialMigrations
+    [Migration("20250205134604_AddUsers")]
+    partial class AddUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,9 +160,6 @@ namespace API.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SendFeedback")
-                        .HasColumnType("TEXT");
-
                     b.Property<double>("SendStar")
                         .HasColumnType("REAL");
 
@@ -191,6 +188,9 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FeedBack")
                         .HasColumnType("TEXT");
 
@@ -199,6 +199,9 @@ namespace API.Data.Migrations
 
                     b.Property<int>("Star")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

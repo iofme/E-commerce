@@ -35,14 +35,14 @@
 <section class="flex flex-col gap-12 items-center mt-12">
     <h3><strong>NEW ARRIVALS</strong></h3>
 
-        <app-novos-produtos class="w-[100%] flex justify-around"></app-novos-produtos>
+    <app-novos-produtos class="w-[100%] flex justify-around"></app-novos-produtos>
 
     <button>View All</button>
 </section>
 
 <hr class="mt-12">
 
-<section class="flex flex-col gap-12 items-center mt-12">
+<section class="flex flex-col gap-12 items-center mb-12 mt-12">
     <h3><strong>TOP SELLING</strong></h3>
 
     <app-mais-avaliados class="w-[100%] flex justify-around"></app-mais-avaliados>
@@ -50,29 +50,27 @@
     <button>View All</button>
 </section>
 
-<section>
-    <h3><strong>BROWSE BY DRESS STYLE</strong></h3>
+<section class="w-[100%] bg-[#F0F0F0] rounded-[40px] mb-12 pb-12 flex flex-col items-center">
+    <h3 class="text-[48px] font-bold mt-12 mb-12"><strong>BROWSE BY DRESS STYLE</strong></h3>
 
-    <div>
-        <p routerLink="casual"><strong>Casual</strong></p>
-        <img src="" alt="">
-    </div>
-    <div>
-        <p><strong>Formal</strong></p>
-        <img src="" alt="">
-    </div>
-    <div>
-        <p><strong>Party</strong></p>
-        <img src="" alt="">
-    </div>
-    <div>
-        <p><strong>Gym</strong></p>
-        <img src="" alt="">
+    <div class="flex flex-wrap items-center justify-center gap-10">
+        <div class="casual">
+            <p routerLink="casual" class="w-[114px] font-bold text-[36px] h-[49px]"><strong>Casual</strong></p>
+        </div>
+        <div class="formal">
+            <p class="w-[114px] font-bold text-[36px] h-[49px]"><strong>Formal</strong></p>
+        </div>
+        <div class="party">
+            <p class="w-[114px] font-bold text-[36px] h-[49px]"><strong>Party</strong></p>
+        </div>
+        <div class="gym">
+            <p class="w-[114px] font-bold text-[36px] h-[49px]"><strong>Gym</strong></p>
+        </div>
     </div>
 </section>
 
-<section>
-    <p>OUR HAPPY CUSTOMERS</p>
+<section class="flex flex-col items-start justify-start">
+    <p class="font-bold text-[48px]">OUR HAPPY CUSTOMERS</p>
     <p></p>
     <p></p>
 

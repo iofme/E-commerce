@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigrations : Migration
+    public partial class AddUsers : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +34,6 @@ namespace API.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     SendStar = table.Column<double>(type: "REAL", nullable: false),
                     Role = table.Column<string>(type: "TEXT", nullable: true),
-                    SendFeedback = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -196,6 +195,8 @@ namespace API.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Star = table.Column<int>(type: "INTEGER", nullable: false),
                     FeedBack = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ProductId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>

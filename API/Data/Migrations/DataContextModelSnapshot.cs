@@ -185,6 +185,9 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FeedBack")
                         .HasColumnType("TEXT");
 
@@ -193,6 +196,9 @@ namespace API.Data.Migrations
 
                     b.Property<int>("Star")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
