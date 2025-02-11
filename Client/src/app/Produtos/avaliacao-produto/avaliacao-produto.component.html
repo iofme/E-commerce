@@ -1,6 +1,7 @@
 @for (feedBack of feedBack; track feedBack.id) {
-    <div>
+    <div class="flex flex-col w-[400px] border h-[239px] gap-4 p-[28px]">
         <p>{{feedBack.star}}</p>
-        <p>{{feedBack.feedBack}}</p>
+        <p class="font-bold text-[20px] leading-[22px]">{{feedBack.userName}}</p>
+        <p class="font-normal text-16px leading-[22px]">{{feedBack.feedBack}}</p>
     </div>
 }

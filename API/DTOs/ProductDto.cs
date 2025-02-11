@@ -15,6 +15,7 @@ namespace API.DTOs
         public required string Description { get; set; }
         public required string Type { get; set; }
         public required string Style { get; set; }
+        public required string Gender  { get; set; }
         public required string Colors { get; set; }
         public required string Size { get; set; }
         public int Quantidade { get; set; }

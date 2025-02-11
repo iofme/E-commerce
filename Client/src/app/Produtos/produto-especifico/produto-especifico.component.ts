@@ -4,11 +4,9 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NovosProdutosComponent } from '../novos-produtos/novos-produtos.component';
 import { ProductService } from '../../_services/product.service';
 import { AvaliacaoProdutoComponent } from "../avaliacao-produto/avaliacao-produto.component";
-import { FeedBack } from '../../models/feedback';
-
 @Component({
   selector: 'app-produto-especifico',
-  imports: [NovosProdutosComponent,RouterLink ,AvaliacaoProdutoComponent],
+  imports: [NovosProdutosComponent ,AvaliacaoProdutoComponent],
   templateUrl: './produto-especifico.component.html',
   styleUrl: './produto-especifico.component.css'
 })
