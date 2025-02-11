@@ -17,9 +17,6 @@ ngOnInit(): void {
 }
 
 loadUser(){
-  this.accountService.getUsers().subscribe({
-    next: response => this.user = response,
-    error:error => console.log(error)
-  })
+
 }
 }
