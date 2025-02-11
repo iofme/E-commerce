@@ -3,10 +3,12 @@ import { PaginaInicialComponent } from './Produtos/pagina-inicial/pagina-inicial
 import { ProdutoEspecificoComponent } from './Produtos/produto-especifico/produto-especifico.component';
 import { MaisAvaliadosComponent } from './Produtos/mais-avaliados/mais-avaliados.component';
 import { NovosProdutosComponent } from './Produtos/novos-produtos/novos-produtos.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {path: '', component: PaginaInicialComponent},
     {path:'produto/:id', component:ProdutoEspecificoComponent },
     {path:'produtos-novos', component:NovosProdutosComponent },
     {path:'produtos-avaliados', component:MaisAvaliadosComponent },
+    {path:'login', component: LoginComponent}
 ];
