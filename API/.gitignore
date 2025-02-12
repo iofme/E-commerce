@@ -5,10 +5,7 @@
 
 # dotenv files
 .env
-*appsettings.Development.json
-*appsettings.json
-*e-commerce.db
-
+e-commerce.db
 # User-specific files
 *.rsuser
 *.suo
