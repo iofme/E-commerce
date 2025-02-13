@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Extension;
 using API.Interface;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -64,6 +65,15 @@ namespace API.Controllers
             return returnUsers;
         }
 
+        [HttpGet("carrinho")]
+        public async Task<MemberDto> GetUser()
+        {
+            var user = await userRepository.GetUserById(User.GetUserId());
+
+            if(user == null) NotFound("Não foi possivel encontrar o usuário");
+
+            return mapper.Map<MemberDto>(user);
+        }
 
         [HttpGet("{id}")]
         public async Task<MemberDto> getUserById(int id)

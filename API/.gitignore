@@ -5,10 +5,14 @@
 
 # dotenv files
 .env
+<<<<<<< HEAD
 appsettings.Development.json
 appsettings.json
 e-commerce.db
 
+=======
+e-commerce.db
+>>>>>>> bd9cd2fd4d9f15c3728d4c62ea2c1b2737c00e14
 # User-specific files
 *.rsuser
 *.suo
