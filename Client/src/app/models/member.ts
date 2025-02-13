@@ -1,6 +1,7 @@
 import { Produto } from "./produto"
 
-export interface Member{ 
+export interface Member{
+    id: number 
     userName: string
     product: Produto[]
     sendStar: number

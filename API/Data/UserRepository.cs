@@ -10,7 +10,10 @@ namespace API.Data
         {
             return await context.Users.Include(p => p.Product).FirstOrDefaultAsync(u => u.Id == id);
         }
-
+        public async Task<IEnumerable<Users>> GetCarrinhoByUser(int id)
+        {
+            return await context.Users.ToListAsync();
+        }
         public async Task<IEnumerable<Users>> GetUsers()
         {
             return await context.Users.Include(p => p.Product).ToListAsync();

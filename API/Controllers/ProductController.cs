@@ -109,9 +109,7 @@ namespace API.Controllers
 
             return NoContent();
         }
-
-
-        [Authorize]
+        
         [HttpPost("carrinho/{productId:int}")]
         public async Task<ActionResult> AdicionarCarrinho(int productId)
         {
@@ -122,6 +120,24 @@ namespace API.Controllers
             var user = await userRepository.GetUserById(User.GetUserId());
 
             user!.Product.Add(product!);
+
+            userRepository.UpdateUser(user);
+
+            await userRepository.SaveAllAsync();
+
+            return NoContent();
+        }
+        
+        [HttpDelete("carrinho/{productId:int}")]
+        public async Task<ActionResult> RemoveCarrinho(int productId)
+        {
+            var product = await repository.GetProductByIdAsync(productId);
+
+            if (product == null) BadRequest("Não foi possivel achar o produto");
+
+            var user = await userRepository.GetUserById(User.GetUserId());
+
+            user!.Product.Remove(product!);
 
             userRepository.UpdateUser(user);
 

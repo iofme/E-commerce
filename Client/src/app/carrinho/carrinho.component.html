@@ -1,1 +1,29 @@
-<p>carrinho works!</p>
+@for (product of member?.product; track member?.id) {
+<section class="flex">
+    <div class="w-[50%] flex">
+        <div>
+            <p>{{product.nameProduct}}</p>
+            <p>Size: {{product.size}}</p>
+            <p>Color: {{product.colors}}</p>
+            <p>${{product.price}}</p>
+        </div>
+        <div>
+            <button (click)="removeProduct(product.id)">excluir</button>
+            <div class="flex justify-around items-center">
+                    <button>-</button>
+                    <p>{{product.quantidade}}</p>
+                    <button>+</button>
+                </div>
+        </div>
+    </div>
+    <div class="w-[50%]">
+        <p>Order Summary</p>
+        <p>Subtotal $...</p>
+        <p>Discount(-20%)</p>
+        <p>Delivery</p>
+        <hr>
+        <p>total $467</p>
+
+    </div>
+</section>
+}

@@ -82,7 +82,6 @@ namespace API.Controllers
 
             return mapper.Map<MemberDto>(user);
         }
-
-
+        
     }
 }

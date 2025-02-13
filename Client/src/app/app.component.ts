@@ -22,6 +22,5 @@ ngOnInit(): void {
     if(!userString) return;
     const user = JSON.parse(userString);
     this.accountService.currentUser.set(user)
-    console.log(user)
   }
 }

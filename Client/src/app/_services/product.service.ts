@@ -31,4 +31,6 @@ export class ProductService {
   getFeedback(id:number){
     return this.http.get<FeedBack[]>( this.accountService.baseUrl + 'product/feedback/' + id);
   }
+  
+  
 }

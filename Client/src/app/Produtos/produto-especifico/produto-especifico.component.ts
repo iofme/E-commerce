@@ -4,15 +4,17 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NovosProdutosComponent } from '../novos-produtos/novos-produtos.component';
 import { ProductService } from '../../_services/product.service';
 import { AvaliacaoProdutoComponent } from "../avaliacao-produto/avaliacao-produto.component";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-produto-especifico',
-  imports: [NovosProdutosComponent ,AvaliacaoProdutoComponent],
+  imports: [NovosProdutosComponent, AvaliacaoProdutoComponent],
   templateUrl: './produto-especifico.component.html',
   styleUrl: './produto-especifico.component.css'
 })
 export class ProdutoEspecificoComponent implements OnInit {
   produto!: Produto
   number = 1
+  http = inject(HttpClient)
   private produtoService = inject(ProductService);
   private route = inject(ActivatedRoute)
 
@@ -35,9 +37,20 @@ export class ProdutoEspecificoComponent implements OnInit {
     })
   }
 
-  addProduct() {
-    this.number++
+  addProductCarrinho() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post('http://localhost:5192/api/product/carrinho/' + this.produto.id, {}, { headers }).subscribe({
+      next: _ => alert("Adicionado com sucesso"),
+      error: error => {
+        alert("Falaha ao adicionar"),
+        console.log(error)
+      }
+    });
   }
+
   removeProduct() {
     if (this.number > 1) {
       this.number--

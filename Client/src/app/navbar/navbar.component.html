@@ -8,7 +8,13 @@
     <p>New Arrivals</p>
     <p>Brands</p>
     <input type="search" name="" id="">
-    <p>{{user?.product?.length}}</p>
-    <img src="shop.svg" alt="">
-    <img src="user.svg" alt="">
+    <div class="flex ">
+        <img src="shop.svg" alt="imagem de um carrinho" routerLink="carrinho">
+        @if(accountService.currentUser()){
+        <p
+            class="flex items-center justify-center w-[1rem] h-[1rem] text-[white] text-[15px] rounded-[50%] bg-[#185ee0]">
+            {{user?.product?.length}}</p>
+        }
+    </div>
+    <img src="user.svg" alt="imagem de usuario">
 </div>

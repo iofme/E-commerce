@@ -29,9 +29,10 @@
                 <div class="w-[170px] h-[52px] rounded-full justify-around items-center bg-[#F0F0F0] flex">
                     <button (click)="removeProduct()">-</button>
                     <p>{{number}}</p>
-                    <button (click)="addProduct()">+</button>
+                    <button>+</button>
                 </div>
                 <button
+                    (click)="addProductCarrinho()"
                     class="w-[400px] h-[52px] rounded-full bg-[#000] flex justify-center items-center text-[#fff] text-[16px]">Add
                     to Cart</button>
             </div>

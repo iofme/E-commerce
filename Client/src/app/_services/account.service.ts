@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../enviroments/enviroment';
 import { User } from '../models/users';
@@ -37,8 +37,7 @@ export class AccountService {
     this.currentUser.set(null);
   }
 
-
   getUser(id: number){
-    return this.http.get<Member>(this.baseUrl + `users/${id}`)
+    return this.http.get<Member>(this.baseUrl + `users/${id}` )
   }
 }
