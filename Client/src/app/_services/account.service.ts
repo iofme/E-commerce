@@ -3,6 +3,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../enviroments/enviroment';
 import { User } from '../models/users';
 import { map } from 'rxjs';
+import { Member } from '../models/member';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +35,10 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUser.set(null);
-  }}
+  }
+
+
+  getUser(id: number){
+    return this.http.get<Member>(this.baseUrl + `users/${id}`)
+  }
+}

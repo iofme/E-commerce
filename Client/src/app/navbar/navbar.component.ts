@@ -17,6 +17,9 @@ ngOnInit(): void {
 }
 
 loadUser(){
-
+  this.accountService.getUser(this.accountService.currentUser()?.id!).subscribe({
+    next: response => this.user = response, 
+    error: error => console.log(error)
+  })
 }
 }

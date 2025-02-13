@@ -5,9 +5,9 @@
 
 # dotenv files
 .env
-*appsettings.Development.json
-*appsettings.json
-*e-commerce.db
+appsettings.Development.json
+appsettings.json
+e-commerce.db
 
 # User-specific files
 *.rsuser

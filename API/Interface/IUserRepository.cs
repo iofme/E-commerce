@@ -9,7 +9,7 @@ namespace API.Interface
     public interface IUserRepository
     {
         Task<IEnumerable<Users>> GetUsers();
-        Task<Users?> GetUserById(int id);
+        Task<Users> GetUserById(int id);
         void UpdateUser(Users users);
         Task<bool> SaveAllAsync();
     }

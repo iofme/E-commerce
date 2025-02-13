@@ -8,7 +8,7 @@ namespace API.Data
     {
         public async Task<Users?> GetUserById(int id)
         {
-            return await context.Users.FindAsync(id);
+            return await context.Users.Include(p => p.Product).FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task<IEnumerable<Users>> GetUsers()

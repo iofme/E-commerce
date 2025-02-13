@@ -31,6 +31,7 @@ namespace API.Controllers
             {
                 Username = user.UserName,
                 Token = await tokenService.CreateToken(user),
+                Id = user.Id,
             };
         }
 
@@ -49,6 +50,7 @@ namespace API.Controllers
             {
                 Username = user.UserName,
                 Token = await tokenService.CreateToken(user),
+                Id = user.Id,
             };
         }
 
@@ -60,6 +62,15 @@ namespace API.Controllers
             var returnUsers = mapper.Map<IEnumerable<MemberDto>>(users);
 
             return returnUsers;
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<MemberDto> getUserById(int id)
+        {
+            var user = await userRepository.GetUserById(id);
+
+            return mapper.Map<MemberDto>(user);
         }
 
 
