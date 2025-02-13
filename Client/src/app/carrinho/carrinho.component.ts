@@ -18,7 +18,6 @@ export class CarrinhoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser()
-    this.accountService.currentUser()
   }
 
   getUser() {
@@ -28,11 +27,14 @@ export class CarrinhoComponent implements OnInit {
     })
   }
 
-  removeProduct(id: number){
+  removeProduct(id: number) {
     return this.http.delete('http://localhost:5192/api/product/carrinho/' + id).subscribe({
-      next: _ => alert("Deletado com sucesso"),
-      error: error => {alert("Falha ao deletar")
-        console.log(this.accountService.currentUser())
+      next: _ => {
+        alert("Deletado com sucesso"),
+        this.getUser()
+      },
+      error: error => {
+        alert("Falha ao deletar")
         console.log(error)
       }
     })

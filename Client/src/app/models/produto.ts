@@ -5,6 +5,7 @@ export interface Produto{
     nameProduct: string
     feedBack: FeedBack[]
     price: number
+    avgStar: number
     description: string
     type: string
     style: string

@@ -38,11 +38,7 @@ export class ProdutoEspecificoComponent implements OnInit {
   }
 
   addProductCarrinho() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.post('http://localhost:5192/api/product/carrinho/' + this.produto.id, {}, { headers }).subscribe({
+    return this.http.post('http://localhost:5192/api/product/carrinho/' + this.produto.id, {},).subscribe({
       next: _ => alert("Adicionado com sucesso"),
       error: error => {
         alert("Falaha ao adicionar"),

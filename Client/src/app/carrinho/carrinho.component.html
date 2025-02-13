@@ -1,20 +1,23 @@
-@for (product of member?.product; track member?.id) {
 <section class="flex">
-    <div class="w-[50%] flex">
-        <div>
-            <p>{{product.nameProduct}}</p>
-            <p>Size: {{product.size}}</p>
-            <p>Color: {{product.colors}}</p>
-            <p>${{product.price}}</p>
-        </div>
-        <div>
-            <button (click)="removeProduct(product.id)">excluir</button>
-            <div class="flex justify-around items-center">
+    <div class="w-[50%]">
+        @for (product of member?.product; track member?.id) {
+        <div class="w-[50%] flex">
+            <div>
+                <p>{{product.nameProduct}}</p>
+                <p>Size: {{product.size}}</p>
+                <p>Color: {{product.colors}}</p>
+                <p>${{product.price}}</p>
+            </div>
+            <div>
+                <button (click)="removeProduct(product.id)">excluir</button>
+                <div class="flex justify-around items-center">
                     <button>-</button>
                     <p>{{product.quantidade}}</p>
                     <button>+</button>
                 </div>
+            </div>
         </div>
+        }
     </div>
     <div class="w-[50%]">
         <p>Order Summary</p>
@@ -26,4 +29,3 @@
 
     </div>
 </section>
-}

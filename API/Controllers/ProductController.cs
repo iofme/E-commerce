@@ -81,7 +81,11 @@ namespace API.Controllers
 
             if (produtos == null) return NotFound("Falha ao achar o usuário pelo Id");
 
-            return mapper.Map<ProductDto>(produtos);
+            ProductDto product = mapper.Map<ProductDto>(produtos);
+
+            product.AVGStar = product.FeedBack.Average(f => f.Star);
+
+            return Ok(product);
         }
 
         [Authorize]
@@ -109,7 +113,7 @@ namespace API.Controllers
 
             return NoContent();
         }
-        
+
         [HttpPost("carrinho/{productId:int}")]
         public async Task<ActionResult> AdicionarCarrinho(int productId)
         {
@@ -127,7 +131,7 @@ namespace API.Controllers
 
             return NoContent();
         }
-        
+
         [HttpDelete("carrinho/{productId:int}")]
         public async Task<ActionResult> RemoveCarrinho(int productId)
         {
