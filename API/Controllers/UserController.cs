@@ -71,8 +71,14 @@ namespace API.Controllers
             var user = await userRepository.GetUserById(User.GetUserId());
 
             if(user == null) NotFound("Não foi possivel encontrar o usuário");
+            
+            MemberDto userEspecifico = mapper.Map<MemberDto>(user);
 
-            return mapper.Map<MemberDto>(user);
+            foreach(var price in user.Product){
+                userEspecifico.TotalPrice += price.Price;
+            }
+
+            return userEspecifico;
         }
 
         [HttpGet("{id}")]

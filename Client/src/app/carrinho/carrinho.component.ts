@@ -1,5 +1,4 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
-import { Produto } from '../models/produto';
+import { Component, effect, inject, OnInit, viewChildren } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Member } from '../models/member';
 import { HttpClient } from '@angular/common/http';

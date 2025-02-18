@@ -10,6 +10,7 @@ namespace API.DTOs
     {
         public string? UserName { get; set; }
         public List<Product> Product { get; set; } = [];
+        public double TotalPrice {get; set;}
         public double SendStar { get; set; }
         public string? Role { get; set; }
     }

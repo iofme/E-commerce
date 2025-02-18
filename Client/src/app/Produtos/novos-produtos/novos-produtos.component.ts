@@ -26,7 +26,7 @@ export class NovosProdutosComponent implements OnInit {
     })
   }
 
-  btnTeste(id: number){
+  btnTrocaDeProduto(id: number){
     this.productService.trocaDeProduto(id)
   }
 }
