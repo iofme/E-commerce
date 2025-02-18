@@ -1,5 +1,5 @@
 import { FeedBack } from './../../models/feedback';
-import { Component, inject, input, Input, OnInit } from '@angular/core';
+import { Component, effect, inject, input, Input, OnInit } from '@angular/core';
 import { ProductService } from '../../_services/product.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,24 +10,31 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './avaliacao-produto.component.css'
 })
 export class AvaliacaoProdutoComponent implements OnInit {
-    feedBack?: FeedBack[]
-    private produtoService = inject(ProductService);
-    private route = inject(ActivatedRoute)
+  feedBack?: FeedBack[]
+  private produtoService = inject(ProductService);
+  private route = inject(ActivatedRoute)
 
-    ngOnInit(): void {
+  constructor() {
+    effect(() => {
+      this.produtoService.productChange()
       this.loadFeedbacks()
-    }
+    })
+  }
 
-    loadFeedbacks(){
-      const id = this.route.snapshot.paramMap.get('id')
- 
-      if (!id || id == null) {
-        console.log("não foi possivel achar o usuário")
-        return;
-      }
-      this.produtoService.getFeedback(parseInt(id)).subscribe({
-        next: respone => this.feedBack = respone,
-        error: error => console.log(error)
-      })
+  ngOnInit(): void {
+    this.loadFeedbacks()
+  }
+
+  loadFeedbacks() {
+    const id = this.route.snapshot.paramMap.get('id')
+
+    if (!id || id == null) {
+      console.log("não foi possivel achar o usuário")
+      return;
     }
+    this.produtoService.getFeedback(parseInt(id)).subscribe({
+      next: respone => this.feedBack = respone,
+      error: error => console.log(error)
+    })
+  }
 }

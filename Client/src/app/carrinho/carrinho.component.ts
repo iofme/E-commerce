@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { Produto } from '../models/produto';
 import { AccountService } from '../_services/account.service';
 import { Member } from '../models/member';
 import { HttpClient } from '@angular/common/http';
+import { ProductService } from '../_services/product.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -13,8 +14,15 @@ import { HttpClient } from '@angular/common/http';
 export class CarrinhoComponent implements OnInit {
   member?: Member
   http = inject(HttpClient)
-
+  private productService = inject(ProductService)
   accountService = inject(AccountService)
+
+  constructor() {
+    effect(() => {
+      this.productService.productChange()
+      this.getUser()
+    })
+  }
 
   ngOnInit(): void {
     this.getUser()
@@ -28,15 +36,6 @@ export class CarrinhoComponent implements OnInit {
   }
 
   removeProduct(id: number) {
-    return this.http.delete('http://localhost:5192/api/product/carrinho/' + id).subscribe({
-      next: _ => {
-        alert("Deletado com sucesso"),
-        this.getUser()
-      },
-      error: error => {
-        alert("Falha ao deletar")
-        console.log(error)
-      }
-    })
+    this.productService.removeProductCarrinho(id)
   }
 }

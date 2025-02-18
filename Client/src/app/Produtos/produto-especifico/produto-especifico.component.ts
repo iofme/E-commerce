@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { Produto } from '../../models/produto';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NovosProdutosComponent } from '../novos-produtos/novos-produtos.component';
 import { ProductService } from '../../_services/product.service';
 import { AvaliacaoProdutoComponent } from "../avaliacao-produto/avaliacao-produto.component";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-produto-especifico',
   imports: [NovosProdutosComponent, AvaliacaoProdutoComponent],
@@ -18,13 +18,19 @@ export class ProdutoEspecificoComponent implements OnInit {
   private produtoService = inject(ProductService);
   private route = inject(ActivatedRoute)
 
+  constructor(){
+    effect(() => {
+      this.produtoService.productChange()
+      this.loadProduto()
+    })
+  }
+
   ngOnInit(): void {
     this.loadProduto()
   }
 
   loadProduto() {
     const id = this.route.snapshot.paramMap.get('id')
-
     if (!id || id == null) {
       console.log("não foi possivel achar o usuário")
       return;
@@ -38,18 +44,6 @@ export class ProdutoEspecificoComponent implements OnInit {
   }
 
   addProductCarrinho() {
-    return this.http.post('http://localhost:5192/api/product/carrinho/' + this.produto.id, {},).subscribe({
-      next: _ => alert("Adicionado com sucesso"),
-      error: error => {
-        alert("Falaha ao adicionar"),
-        console.log(error)
-      }
-    });
-  }
-
-  removeProduct() {
-    if (this.number > 1) {
-      this.number--
-    }
+    this.produtoService.addProductCarrinho(this.produto.id);
   }
 }

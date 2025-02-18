@@ -7,14 +7,22 @@
     <p>On Sale</p>
     <p>New Arrivals</p>
     <p>Brands</p>
-    <input type="search" name="" id="">
+    <input
+        class="bg-zinc-200 text-zinc-600 font-mono ring-1 ring-zinc-400 focus:ring-2 focus:ring-rose-400 outline-none duration-300 placeholder:text-zinc-600 placeholder:opacity-50 rounded-full px-4 py-1 shadow-md focus:shadow-lg focus:shadow-rose-400"
+        autocomplete="off" placeholder="summer..." name="text" type="text" />
+
     <div class="flex ">
         <img src="shop.svg" alt="imagem de um carrinho" routerLink="carrinho">
         @if(accountService.currentUser()){
         <p
-            class="flex items-center justify-center w-[1rem] h-[1rem] text-[white] text-[15px] rounded-[50%] bg-[#185ee0]">
+            class="flex items-center justify-center w-[1.4rem] h-[1rem] text-[white] text-[15px] rounded-[50%] bg-[#185ee0]">
             {{user?.product?.length}}</p>
         }
     </div>
+
+    <p>{{teste()}}</p>
+    <button (click)="addteste()">add</button>
+    <button (click)="removeteste()">remove</button>
+    <button (click)="setteste()">set</button>
     <img src="user.svg" alt="imagem de usuario">
 </div>

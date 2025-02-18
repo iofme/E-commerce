@@ -1,15 +1,16 @@
-<section class="flex">
+<section class="flex mt-10">
     <div class="w-[50%]">
         @for (product of member?.product; track member?.id) {
-        <div class="w-[50%] flex">
-            <div>
-                <p>{{product.nameProduct}}</p>
-                <p>Size: {{product.size}}</p>
-                <p>Color: {{product.colors}}</p>
-                <p>${{product.price}}</p>
+        <div class="w-[50%] flex mt-2 rounded-[12px] border">
+            <div class="pl-12 w-[100%] ">
+                <img src="" alt="">
+                <p class="text-[20px] font-bold">{{product.nameProduct}}</p>
+                <p class="text-[14px] font-medium">Size: {{product.size}}</p>
+                <p class="text-[14px] font-medium">Color: {{product.colors}}</p>
+                <p class="text-[24px] font-bold">${{product.price}}</p>
             </div>
             <div>
-                <button (click)="removeProduct(product.id)">excluir</button>
+                <button (click)="removeProduct(product.id)"><img src="Delete.svg" alt="delete"></button>
                 <div class="flex justify-around items-center">
                     <button>-</button>
                     <p>{{product.quantidade}}</p>

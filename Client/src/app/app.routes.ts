@@ -8,9 +8,9 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 export const routes: Routes = [
     {path: '', component: PaginaInicialComponent},
-    {path:'produto/:id', component:ProdutoEspecificoComponent },
-    {path:'produtos-novos', component:NovosProdutosComponent },
-    {path:'produtos-avaliados', component:MaisAvaliadosComponent },
-    {path:'login', component: LoginComponent},
-    {path: 'carrinho', component: CarrinhoComponent}
+    {path:'produto/:id', title: 'produto',component:ProdutoEspecificoComponent },
+    {path:'produtos-novos', title:'produtos-novos' ,component:NovosProdutosComponent },
+    {path:'produtos-avaliados', title: 'Bem-avaliados' , component:MaisAvaliadosComponent },
+    {path:'login', title: 'login', component: LoginComponent},
+    {path: 'carrinho', title:'carrinho' ,component: CarrinhoComponent}
 ];

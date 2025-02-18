@@ -27,19 +27,18 @@
             </div>
             <div class="flex ml-[40px] gap-6">
                 <div class="w-[170px] h-[52px] rounded-full justify-around items-center bg-[#F0F0F0] flex">
-                    <button (click)="removeProduct()">-</button>
+                    <button>-</button>
                     <p>{{number}}</p>
                     <button>+</button>
                 </div>
-                <button
-                    (click)="addProductCarrinho()"
+                <button (click)="addProductCarrinho()"
                     class="w-[400px] h-[52px] rounded-full bg-[#000] flex justify-center items-center text-[#fff] text-[16px]">Add
                     to Cart</button>
             </div>
         </div>
     </div>
 
-    <div class="flex flex-col justify-center mb-16">
+    <div class="flex flex-col justify-center mt-16 mb-16">
         <div class="flex justify-evenly">
             <p>Product Details</p>
             <p>Rating & Reviews</p>
@@ -50,6 +49,8 @@
 
         <button>Load More Reviews</button>
     </div>
+
+    <input type="checkbox" name="teste" id="teste">
 
     <div class="flex flex-col justify-center items-center mb-16 w-[100%]">
         <h2 class="text-[#000] text-[48px] font-bold mb-16">You Might also like</h2>
