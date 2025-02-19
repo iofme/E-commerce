@@ -65,29 +65,22 @@ namespace API.Controllers
             return returnUsers;
         }
 
-        [HttpGet("carrinho")]
-        public async Task<MemberDto> GetUser()
+        [HttpGet("{id}")]
+        public async Task<MemberDto> getUserById(int id)
         {
             var user = await userRepository.GetUserById(User.GetUserId());
 
-            if(user == null) NotFound("Não foi possivel encontrar o usuário");
-            
+            if (user == null) NotFound("Não foi possivel encontrar o usuário");
+
             MemberDto userEspecifico = mapper.Map<MemberDto>(user);
 
-            foreach(var price in user.Product){
+            foreach (var price in user!.Product)
+            {
                 userEspecifico.TotalPrice += price.Price;
             }
 
             return userEspecifico;
         }
 
-        [HttpGet("{id}")]
-        public async Task<MemberDto> getUserById(int id)
-        {
-            var user = await userRepository.GetUserById(id);
-
-            return mapper.Map<MemberDto>(user);
-        }
-        
     }
 }

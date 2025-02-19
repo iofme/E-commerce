@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, viewChildren } from '@angular/core';
+import { Component, effect, inject, OnInit, signal, viewChildren } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Member } from '../models/member';
 import { HttpClient } from '@angular/common/http';
@@ -37,4 +37,7 @@ export class CarrinhoComponent implements OnInit {
   removeProduct(id: number) {
     this.productService.removeProductCarrinho(id)
   }
+
+
+  
 }

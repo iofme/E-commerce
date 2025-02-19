@@ -13,12 +13,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProdutoEspecificoComponent implements OnInit {
   produto!: Produto
-  number = 1
+  number = 2
   http = inject(HttpClient)
   private produtoService = inject(ProductService);
   private route = inject(ActivatedRoute)
 
-  constructor(){
+  constructor() {
     effect(() => {
       this.produtoService.productChange()
       this.loadProduto()
@@ -46,4 +46,17 @@ export class ProdutoEspecificoComponent implements OnInit {
   addProductCarrinho() {
     this.produtoService.addProductCarrinho(this.produto.id);
   }
+
+  viewProductDetails() {
+    this.number = 1
+  }
+
+  viewReviews() {
+    this.number = 2
+  }
+
+  viewFAQ() {
+    this.number = 3
+  }
+
 }

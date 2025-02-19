@@ -28,7 +28,6 @@
             <div class="flex ml-[40px] gap-6">
                 <div class="w-[170px] h-[52px] rounded-full justify-around items-center bg-[#F0F0F0] flex">
                     <button>-</button>
-                    <p>{{number}}</p>
                     <button>+</button>
                 </div>
                 <button (click)="addProductCarrinho()"
@@ -40,14 +39,24 @@
 
     <div class="flex flex-col justify-center mt-16 mb-16">
         <div class="flex justify-evenly">
-            <p>Product Details</p>
-            <p>Rating & Reviews</p>
-            <p>FAQs</p>
+            <button (click)="viewProductDetails()">Product Details</button>
+            <button (click)="viewReviews()">Rating & Reviews</button>
+            <button (click)="viewFAQ()">FAQs</button>
         </div>
 
-        <app-avaliacao-produto></app-avaliacao-produto>
+        @if (number == 1) {
+            
+        }
 
-        <button>Load More Reviews</button>
+        @if (number == 2) {
+            <app-avaliacao-produto></app-avaliacao-produto>
+            <button>Load More Reviews</button>
+        }
+
+        @if (number == 3) {
+
+        }
+
     </div>
 
     <input type="checkbox" name="teste" id="teste">
