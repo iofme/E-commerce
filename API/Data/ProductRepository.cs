@@ -1,5 +1,7 @@
 using API.Entities;
+using API.Helpers;
 using API.Interface;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +13,9 @@ public class ProductRepository(DataContext context) : IProductRepository
         return await context.Products.Include(f => f.FeedBack).FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<IEnumerable<Product?>> GetProductsAsync()
+    public async Task<PagedList<Product?>> GetProductsAsync(UserParams userParams)
     {
-        return await context.Products.Include(f => f.FeedBack).ToListAsync();
+        var query = context.Products.Include(f => f.FeedBack).ProjectTo()
     }
     public async Task<IEnumerable<FeedBackUser>> GetFeedBackAsync(int id)
     {
