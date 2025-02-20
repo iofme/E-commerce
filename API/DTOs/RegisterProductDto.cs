@@ -19,13 +19,14 @@ namespace API.DTOs
         [Required]
         public required string Description { get; set; }
         [Required]
-        public required string Colors { get; set; }
+        public required List<string> Colors { get; set; } = [];
         [Required]
         public required string Type { get; set; }
         [Required]
         public required string Style { get; set; }
         [Required]
-        public required string Size { get; set; }
+        public required List<string> Size { get; set; } = [];
+        public required string Gender { get; set; }
         [Required]
         public int Quantidade { get; set; }
     }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250205134604_AddUsers")]
-    partial class AddUsers
+    [Migration("20250220141859_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Colors")
+                    b.PrimitiveCollection<string>("Colors")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -34,6 +34,10 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -47,7 +51,7 @@ namespace API.Data.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Size")
+                    b.PrimitiveCollection<string>("Size")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -197,8 +201,8 @@ namespace API.Data.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Star")
-                        .HasColumnType("INTEGER");
+                    b.Property<double?>("Star")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT");

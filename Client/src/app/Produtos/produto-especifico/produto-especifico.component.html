@@ -14,8 +14,11 @@
             <hr>
             <div>
                 <p class="text-[16px]">Select Colors</p>
-                <div class="w-[37px] h-[37px] bg-[red] flex justify-center rounded-full">
-                    <input class="bg-[red]" type="checkbox" name="" id="" value="{{produto.colors}}">
+                <div class="flex gap-2">
+                    @for (cor of produto.colors; track produto.id) {
+                    <div class="w-[37px] h-[37px] bg-[{{cor}}] flex justify-center rounded-full">
+                    </div>
+                    }
                 </div>
             </div>
             <div>
@@ -45,12 +48,12 @@
         </div>
 
         @if (number == 1) {
-            
+
         }
 
         @if (number == 2) {
-            <app-avaliacao-produto></app-avaliacao-produto>
-            <button>Load More Reviews</button>
+        <app-avaliacao-produto></app-avaliacao-produto>
+        <button>Load More Reviews</button>
         }
 
         @if (number == 3) {
@@ -58,8 +61,6 @@
         }
 
     </div>
-
-    <input type="checkbox" name="teste" id="teste">
 
     <div class="flex flex-col justify-center items-center mb-16 w-[100%]">
         <h2 class="text-[#000] text-[48px] font-bold mb-16">You Might also like</h2>

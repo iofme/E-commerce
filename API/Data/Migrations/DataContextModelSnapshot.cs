@@ -23,7 +23,7 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Colors")
+                    b.PrimitiveCollection<string>("Colors")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -31,6 +31,10 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -44,7 +48,7 @@ namespace API.Data.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Size")
+                    b.PrimitiveCollection<string>("Size")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -194,7 +198,7 @@ namespace API.Data.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Star")
+                    b.Property<double?>("Star")
                         .HasColumnType("REAL");
 
                     b.Property<string>("UserName")

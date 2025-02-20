@@ -24,6 +24,7 @@ namespace API.Controllers
                 Colors = registerProductDto.Colors,
                 Size = registerProductDto.Size,
                 Quantidade = registerProductDto.Quantidade,
+                Gender = registerProductDto.Gender,
                 Style = registerProductDto.Style,
                 Type = registerProductDto.Type,
             };
@@ -49,6 +50,7 @@ namespace API.Controllers
             var produto = await repository.GetFeedBackAsync(id);
 
             if (produto == null) NotFound("Não foi possivel achar o produto pelo id");
+
 
             return produto!;
         }
@@ -83,7 +85,7 @@ namespace API.Controllers
 
             ProductDto product = mapper.Map<ProductDto>(produtos);
 
-            product.AVGStar = product.FeedBack.Average(f => f.Star);
+            product.AVGStar = product?.FeedBack?.Average(f => f.Star);
 
             return Ok(product);
         }

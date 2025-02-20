@@ -10,7 +10,7 @@ export interface Produto{
     type: string
     style: string
     gender: any
-    colors: string
+    colors: string[]
     size: string
     quantidade: number
     created: string
