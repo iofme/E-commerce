@@ -1,4 +1,10 @@
 <section class="flex mt-10">
+    @if (!member?.product?.length) {
+    <div class="w-[100%] text-center">
+        <p>Sem produto cadastrado</p>
+    </div>
+    }
+    @else {
     <div class="w-[50%]">
         @for (product of member?.product; track member?.id) {
         <div class="w-[50%] flex mt-2 rounded-[12px] border">
@@ -26,4 +32,5 @@
         <hr>
         <p>{{member?.totalPrice}}</p>
     </div>
+    }
 </section>

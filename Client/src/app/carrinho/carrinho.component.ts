@@ -38,6 +38,8 @@ export class CarrinhoComponent implements OnInit {
     this.productService.removeProductCarrinho(id)
   }
 
-
+  teste(){
+    console.log(this.member?.product.length)
+  }
   
 }

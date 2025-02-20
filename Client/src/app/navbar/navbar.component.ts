@@ -15,21 +15,6 @@ export class NavbarComponent implements OnInit {
   productService = inject(ProductService)
   user?: Member
 
-  teste = signal(0)
-  computedTeste = this.teste
-
-  addteste(){
-    this.teste.update(x => x + 1)
-  }
-
-  removeteste(){
-    this.teste.update(x => x - 1)
-  }
-
-  setteste(){
-    this.teste.set(30)
-  }
-
   constructor(){
     effect(() => {
       this.productService.productChange()
@@ -39,6 +24,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUser()
+  }
+
+  alertNotUser(){
+    alert("Usuário não logado!")
   }
 
   loadUser() {

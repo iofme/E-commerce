@@ -12,6 +12,9 @@
         autocomplete="off" placeholder="summer..." name="text" type="text" />
 
     <div class="flex ">
+        @if(!accountService.currentUser()){
+            <img src="shop.svg" alt="imagem de um carrinho" (click)="alertNotUser()">
+        }
         <img src="shop.svg" alt="imagem de um carrinho" routerLink="carrinho">
         @if(accountService.currentUser()){
         <p
@@ -19,10 +22,5 @@
             {{user?.product?.length}}</p>
         }
     </div>
-
-    <p>{{teste()}}</p>
-    <button (click)="addteste()">add</button>
-    <button (click)="removeteste()">remove</button>
-    <button (click)="setteste()">set</button>
     <img routerLink="/login" src="user.svg" alt="imagem de usuario">
 </div>
