@@ -2,6 +2,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extension;
+using API.Helpers;
 using API.Interface;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -35,13 +36,13 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ProductDto?>> GetProdutuc()
+        public async Task<ActionResult<IEnumerable<ProductDto?>>> GetProdutucs([FromQuery]UserParams userParams)
         {
-            var produtos = await repository.GetProductsAsync();
+            var products = await repository.GetProductsAsync(userParams);
 
-            var productToReturn = mapper.Map<IEnumerable<ProductDto>>(produtos);
+            Response.AddPaginationHeader(products);
 
-            return productToReturn;
+            return Ok(products);
         }
 
         [HttpGet("feedback/{id:int}")]

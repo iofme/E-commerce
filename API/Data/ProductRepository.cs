@@ -1,21 +1,25 @@
+using API.DTOs;
 using API.Entities;
 using API.Helpers;
 using API.Interface;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data;
-public class ProductRepository(DataContext context) : IProductRepository
+public class ProductRepository(DataContext context, IMapper mapper) : IProductRepository
 {
     public async Task<Product?> GetProductByIdAsync(int id)
     {
         return await context.Products.Include(f => f.FeedBack).FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<PagedList<Product?>> GetProductsAsync(UserParams userParams)
+    public async Task<PagedList<ProductDto>> GetProductsAsync(UserParams userParams)
     {
-        var query = context.Products.Include(f => f.FeedBack).ProjectTo()
+        var query = context.Products.Include(f => f.FeedBack).ProjectTo<ProductDto>(mapper.ConfigurationProvider);
+
+        return await PagedList<ProductDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
     }
     public async Task<IEnumerable<FeedBackUser>> GetFeedBackAsync(int id)
     {

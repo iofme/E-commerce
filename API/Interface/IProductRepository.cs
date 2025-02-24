@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Helpers;
 
@@ -12,10 +13,10 @@ namespace API.Interface
         
         void UpdateProduct(Product product);
         Task<bool> SaveAllAsync();
-        Task<PagedList<Product?>> GetProductsAsync(UserParams userParams);
-        Task<PagedList<FeedBackUser>> GetFeedBackAsync(int id, UserParams userParams);
+        Task<PagedList<ProductDto>> GetProductsAsync(UserParams userParams);
+        Task<IEnumerable<FeedBackUser>> GetFeedBackAsync(int id);
         Task<Product?> GetProductByIdAsync(int id);
-        Task<PagedList<Product?>> GetProductsAsyncByTime(UserParams userParams);
-        Task<PagedList<Product?>> GetProductsByStar(UserParams userParams);
+        Task<IEnumerable<Product?>> GetProductsAsyncByTime();
+        Task<IEnumerable<Product?>> GetProductsByStar();
     }
 }
