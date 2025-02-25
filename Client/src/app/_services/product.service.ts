@@ -1,7 +1,7 @@
+import { FeedBack } from './../models/feedback';
 import { inject, Injectable, Signal, signal, computed } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Produto } from '../models/produto';
-import { FeedBack } from '../models/feedback';
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
 import { PaginatedResult } from '../models/paginations';
@@ -80,6 +80,10 @@ export class ProductService {
           console.log(error)
       }
     });
+  }
+
+  addFeedbackProduct(productId: number, feedBack: string, star: number){
+    return this.http.post(this.accountService.baseUrl + 'product/addFeedback/' + productId, {feedBack, star})
   }
 
   trocaDeProduto(id: number){

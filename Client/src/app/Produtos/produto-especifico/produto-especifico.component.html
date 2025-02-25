@@ -52,11 +52,22 @@
         }
 
         @if (number == 2) {
-            <app-avaliacao-produto></app-avaliacao-produto>
+        <app-avaliacao-produto></app-avaliacao-produto>
         }
 
         @if (number == 3) {
-
+        @if (sendFeedback == false) {
+        <form action="" id="sendFeedback" (submit)="enviarFeedback()">
+            <div class="flex gap-6">
+                <input type="number" [(ngModel)]="star" name="star" id="star" class="bg-[#F0F0F0]">
+                <input type="text" [(ngModel)]="feedback" name="feedback" id="feedback" class="bg-[#F0F0F0]">
+                <button>teste</button>
+            </div>
+        </form>
+        }
+        @else {
+            <p>Feedback já enviado</p>
+        }
         }
 
     </div>

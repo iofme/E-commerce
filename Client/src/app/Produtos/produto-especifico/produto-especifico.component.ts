@@ -5,18 +5,23 @@ import { NovosProdutosComponent } from '../novos-produtos/novos-produtos.compone
 import { ProductService } from '../../_services/product.service';
 import { AvaliacaoProdutoComponent } from "../avaliacao-produto/avaliacao-produto.component";
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-produto-especifico',
-  imports: [NovosProdutosComponent, AvaliacaoProdutoComponent],
+  imports: [NovosProdutosComponent, AvaliacaoProdutoComponent, FormsModule],
   templateUrl: './produto-especifico.component.html',
   styleUrl: './produto-especifico.component.css'
 })
 export class ProdutoEspecificoComponent implements OnInit {
   produto!: Produto
   number = 2
+  feedback?: string
+  star?: number
+
   http = inject(HttpClient)
   private produtoService = inject(ProductService);
   private route = inject(ActivatedRoute)
+  sendFeedback: boolean = false
 
   constructor() {
     effect(() => {
@@ -43,6 +48,16 @@ export class ProdutoEspecificoComponent implements OnInit {
     })
   }
 
+  enviarFeedback() {
+    this.produtoService.addFeedbackProduct(this.produto.id, this.feedback!, this.star!).subscribe({
+      next: _ => {
+        alert("foi"),
+          this.sendFeedback = true
+      },
+      error: error => console.log(error)
+    })
+  }
+
   addProductCarrinho() {
     this.produtoService.addProductCarrinho(this.produto.id);
   }
@@ -58,5 +73,7 @@ export class ProdutoEspecificoComponent implements OnInit {
   viewFAQ() {
     this.number = 3
   }
+
+
 
 }
