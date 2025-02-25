@@ -21,11 +21,11 @@ public class ProductRepository(DataContext context, IMapper mapper) : IProductRe
 
         return await PagedList<ProductDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
     }
-    public async Task<IEnumerable<FeedBackUser>> GetFeedBackAsync(int id)
+    public async Task<PagedList<FeedBackUserDto>> GetFeedBackAsync(int id, UserParams userParams)
     {
-        var p = await context.Products.Include(f => f.FeedBack).FirstOrDefaultAsync(p => p.Id == id);
+        var query = context.Products.Where(p => p.Id == id).Include(p => p.FeedBack).SelectMany(p => p.FeedBack).ProjectTo<FeedBackUserDto>(mapper.ConfigurationProvider);
 
-        return p!.FeedBack;
+        return await PagedList<FeedBackUserDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
     }
     public async Task<IEnumerable<Product?>> GetProductsAsyncByTime()
     {

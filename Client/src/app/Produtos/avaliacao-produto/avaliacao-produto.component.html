@@ -1,59 +1,62 @@
-@for (feedBack of feedBack; track feedBack.id) {
-<div class="flex flex-col w-[400px] border h-[239px] gap-4 p-[28px]">
-    <div class="flex">
-        @if (feedBack.star < 1) { 
-            <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star == 1) {
-             <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star < 2 && feedBack.star > 1) {
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star == 2 ) {
-        <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-        <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star < 3 && feedBack.star > 2) {
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star == 3) {
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star < 4 && feedBack.star > 3) {
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star == 4) {
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star < 5 && feedBack.star > 5) {
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
-        @if (feedBack.star == 5) {
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
-        }
+<div class="w-[100%] pl-[10rem] pr-[10rem] pt-[3rem] flex gap-12 flex-wrap">
+    @for (feedBack of produtoService.paginetionResultFeedback()?.items; track feedBack.id) {
+    <div class="flex flex-col w-[400px] border h-[239px] gap-4 p-[28px]">
+        <div class="flex">
+            @if (feedBack.star < 1) { <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
+                }
+                @if (feedBack.star == 1) {
+                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                }
+                @if (feedBack.star < 2 && feedBack.star> 1) {
+                    <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                    <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
+                    }
+                    @if (feedBack.star == 2 ) {
+                    <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                    <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                    }
+                    @if (feedBack.star < 3 && feedBack.star> 2) {
+                        <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                        <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                        <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
+                        }
+                        @if (feedBack.star == 3) {
+                        <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                        <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                        <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                        }
+                        @if (feedBack.star < 4 && feedBack.star> 3) {
+                            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                            <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
+                            }
+                            @if (feedBack.star == 4) {
+                            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                            <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                            }
+                            @if (feedBack.star < 5 && feedBack.star> 5) {
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="MeiaEstrela.svg" class="w-[22.58] h-[22.58]" alt="">
+                                }
+                                @if (feedBack.star == 5) {
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                <img src="EstrelaInteira.svg" class="w-[22.58] h-[22.58]" alt="">
+                                }
+        </div>
+        <p class="font-bold text-[20px] leading-[22px]">{{feedBack.userName}}</p>
+        <p class="font-normal text-16px leading-[22px]">"{{feedBack.feedBack}}"</p>
+        <p>Posted on {{feedBack.created}}</p>
     </div>
-    <p class="font-bold text-[20px] leading-[22px]">{{feedBack.userName}}</p>
-    <p class="font-normal text-16px leading-[22px]">"{{feedBack.feedBack}}"</p>
-    <p>Posted on {{feedBack.created}}</p>
+    }
 </div>
-}
+<app-button-carregar-mais [maisItems]="maisItem" (click)="carregarMais()">
+</app-button-carregar-mais>

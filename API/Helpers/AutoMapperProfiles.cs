@@ -13,6 +13,7 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<ProductUpdate, Product>();
+            CreateMap<FeedBackUser, FeedBackUserDto>();
             CreateMap<Product, ProductDto>();
             CreateMap<Users, MemberDto>();
             CreateMap<Users, UserDto>();

@@ -14,7 +14,7 @@ namespace API.Interface
         void UpdateProduct(Product product);
         Task<bool> SaveAllAsync();
         Task<PagedList<ProductDto>> GetProductsAsync(UserParams userParams);
-        Task<IEnumerable<FeedBackUser>> GetFeedBackAsync(int id);
+        Task<PagedList<FeedBackUserDto>> GetFeedBackAsync(int id, UserParams userParams);
         Task<Product?> GetProductByIdAsync(int id);
         Task<IEnumerable<Product?>> GetProductsAsyncByTime();
         Task<IEnumerable<Product?>> GetProductsByStar();

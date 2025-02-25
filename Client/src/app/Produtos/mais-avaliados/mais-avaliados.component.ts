@@ -9,13 +9,15 @@ import { ProductService } from '../../_services/product.service';
   styleUrl: './mais-avaliados.component.css'
 })
 export class MaisAvaliadosComponent implements OnInit {
-  produtos: Produto[] = []
   produtoService = inject(ProductService)
+  pageNumber = 1
+  pageSiza = 3
 
   ngOnInit(): void {
-    this.produtoService.getProductsByStar().subscribe({
-      next: response => this.produtos = response,
-      error: error => console.log(error)
-    })
+    if (!this.produtoService.paginetionResult()) this.loadProduct()
+  }
+
+  loadProduct(){
+    this.produtoService.getProducts(this.pageNumber, this.pageSiza)
   }
 }

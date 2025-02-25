@@ -27,7 +27,8 @@ export class NavbarComponent implements OnInit {
   }
 
   alertNotUser(){
-    alert("Usuário não logado!")
+    alert(`Carrinho vazio
+Usuário não logado`)
   }
 
   loadUser() {

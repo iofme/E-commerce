@@ -13,10 +13,10 @@
 
     <div class="flex ">
         @if(!accountService.currentUser()){
-            <img src="shop.svg" alt="imagem de um carrinho" (click)="alertNotUser()">
+        <img src="shop.svg" alt="imagem de um carrinho" (click)="alertNotUser()">
         }
-        <img src="shop.svg" alt="imagem de um carrinho" routerLink="carrinho">
         @if(accountService.currentUser()){
+        <img src="shop.svg" alt="imagem de um carrinho" routerLink="carrinho">
         <p
             class="flex items-center justify-center w-[1.4rem] h-[1rem] text-[white] text-[15px] rounded-[50%] bg-[#185ee0]">
             {{user?.product?.length}}</p>

@@ -1,24 +1,42 @@
 import { inject, Injectable, Signal, signal, computed } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Produto } from '../models/produto';
 import { FeedBack } from '../models/feedback';
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
+import { PaginatedResult } from '../models/paginations';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   produto!: Produto;
+  feedBack!: FeedBack[]
   produtos!: Produto[]
   private accountService = inject(AccountService);
   http = inject(HttpClient);
   route = inject(Router)
+  paginetionResult = signal<PaginatedResult<Produto[]> | null>(null)
+  paginetionResultFeedback = signal<PaginatedResult<FeedBack[]> | null>(null)
 
   private readonly productChangeSignal = signal(0);
 
-  getProducts() {
-    return this.http.get<Produto[]>(this.accountService.baseUrl + 'product');
+  getProducts(pageNumber?:number, pageSize?:number) {
+    let params = new HttpParams();
+
+    if(pageSize && pageNumber){
+      params = params.append('pageNumber', pageNumber);
+      params = params.append('pageSize', pageSize);
+    }
+
+    return this.http.get<Produto[]>(this.accountService.baseUrl + 'product', {observe: 'response', params}).subscribe({
+      next: response => {
+        this.paginetionResult.set({
+          items: response.body as Produto[],
+          pagination: JSON.parse(response.headers.get('Pagination')!)
+        })
+      }
+    })
   }
 
   getProduct(id: number) {
@@ -33,8 +51,22 @@ export class ProductService {
     return this.http.get<Produto[]>(this.accountService.baseUrl + 'product/star');
   }
 
-  getFeedback(id: number) {
-    return this.http.get<FeedBack[]>(this.accountService.baseUrl + 'product/feedback/' + id);
+  getFeedback(id: number, pageNumber: number, pageSize: number) {
+    let params = new HttpParams()
+
+    if(pageNumber && pageSize){
+      params = params.append('pageNumber', pageNumber)
+      params = params.append('pageSize', pageSize)
+    }
+
+    return this.http.get<FeedBack[]>(this.accountService.baseUrl + 'product/feedback/' + id, {observe: 'response', params}).subscribe({
+      next: response => {
+        this.paginetionResultFeedback.set({
+          items: response.body as FeedBack[],
+          pagination: JSON.parse(response.headers.get('Pagination')!)
+        })
+      }
+    })
   }
 
   addProductCarrinho(productId: number) {

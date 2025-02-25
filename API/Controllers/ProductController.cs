@@ -46,14 +46,15 @@ namespace API.Controllers
         }
 
         [HttpGet("feedback/{id:int}")]
-        public async Task<IEnumerable<FeedBackUser>> GetProdutucWithFeedBack(int id)
+        public async Task<ActionResult<IEnumerable<FeedBackUser>>> GetProdutucWithFeedBack(int id, [FromQuery]UserParams userParams)
         {
-            var produto = await repository.GetFeedBackAsync(id);
+            var feedBacks = await repository.GetFeedBackAsync(id, userParams);
 
-            if (produto == null) NotFound("Não foi possivel achar o produto pelo id");
+            if (feedBacks == null) NotFound("Não foi possivel achar o produto pelo id");
 
+            Response.AddPaginationHeader(feedBacks!);
 
-            return produto!;
+            return Ok(feedBacks);
         }
 
         [HttpGet("time")]

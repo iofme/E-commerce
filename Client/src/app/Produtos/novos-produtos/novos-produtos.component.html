@@ -1,10 +1,9 @@
-@for (produtos of produtos; track produtos.id) {
+@for (produtos of productService.paginetionResult()?.items; track produtos.id) {
 <button (click)="btnTrocaDeProduto(produtos.id)">
     <div class="w-[295px] h-[408px] flex flex-col gap-1">
         <img class="w-[295px] h-[298px]" src="" alt="">
         <p class="text-[20px] font-bold">{{produtos.nameProduct}}</p>
         <p class="text-[24px] font-bold">${{produtos.price}}</p>
-
     </div>
 </button>
 }

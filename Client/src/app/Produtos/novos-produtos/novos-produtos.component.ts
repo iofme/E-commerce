@@ -11,19 +11,17 @@ import { ProductService } from '../../_services/product.service';
 })
 
 export class NovosProdutosComponent implements OnInit {
-  produtos: Produto[] = []
   productService = inject(ProductService)
   route = inject(Router)
+  pageSize = 3
+  pageNumber = 2
 
   ngOnInit(): void {
-    this.loadProduto()
+    if(!this.productService.paginetionResult()) this.loadProduto()
   }
 
   loadProduto() {
-    this.productService.getProductsByTime().subscribe({
-      next: response => this.produtos = response,
-      error: error => console.log(error)
-    })
+    this.productService.getProducts(this.pageNumber, this.pageSize)
   }
 
   btnTrocaDeProduto(id: number){

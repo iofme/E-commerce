@@ -1,25 +1,22 @@
 import { FeedBack } from './../../models/feedback';
-import { Component, effect, inject, input, Input, OnInit } from '@angular/core';
+import { Component, effect, inject, input, Input, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../_services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ButtonCarregarMaisComponent } from "../../button-carregar-mais/button-carregar-mais.component";
 
 @Component({
   selector: 'app-avaliacao-produto',
-  imports: [],
+  imports: [ButtonCarregarMaisComponent],
   templateUrl: './avaliacao-produto.component.html',
   styleUrl: './avaliacao-produto.component.css'
 })
 export class AvaliacaoProdutoComponent implements OnInit {
   feedBack?: FeedBack[]
-  private produtoService = inject(ProductService);
+  maisItem: boolean = true
+  produtoService = inject(ProductService);
   private route = inject(ActivatedRoute)
-
-  constructor() {
-    effect(() => {
-      this.produtoService.productChange()
-      this.loadFeedbacks()
-    })
-  }
+  pageSize = 3
+  pageNumber = 1
 
   ngOnInit(): void {
     this.loadFeedbacks()
@@ -32,9 +29,14 @@ export class AvaliacaoProdutoComponent implements OnInit {
       console.log("não foi possivel achar o usuário")
       return;
     }
-    this.produtoService.getFeedback(parseInt(id)).subscribe({
-      next: respone => this.feedBack = respone,
-      error: error => console.log(error)
-    })
+    this.produtoService.getFeedback(parseInt(id), this.pageNumber, this.pageSize,)
+  }
+
+  carregarMais() {
+    this.pageSize++
+    this.loadFeedbacks()
+    if(!this.feedBack?.length){
+      this.maisItem = false
+    }
   }
 }
